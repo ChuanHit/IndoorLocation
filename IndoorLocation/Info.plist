@@ -30,6 +30,17 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Request your location for iBeacon</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Request Bluetoothe for iBeacon</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Request your location for iBeacon</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>bluetooth-central</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

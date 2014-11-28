@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		629537A71A2840A000D00966 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629537A61A2840A000D00966 /* CoreBluetooth.framework */; };
 		62E1DB091A2834610084C6CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB081A2834610084C6CF /* main.m */; };
 		62E1DB0C1A2834610084C6CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB0B1A2834610084C6CF /* AppDelegate.m */; };
 		62E1DB0F1A2834610084C6CF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB0E1A2834610084C6CF /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		62E1DB141A2834610084C6CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62E1DB131A2834610084C6CF /* Images.xcassets */; };
 		62E1DB171A2834610084C6CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62E1DB151A2834610084C6CF /* LaunchScreen.xib */; };
 		62E1DB231A2834610084C6CF /* IndoorLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB221A2834610084C6CF /* IndoorLocationTests.m */; };
+		62E1DB2D1A28375F0084C6CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E1DB2C1A28375F0084C6CF /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		629537A61A2840A000D00966 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		62E1DB031A2834610084C6CF /* IndoorLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndoorLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E1DB071A2834610084C6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62E1DB081A2834610084C6CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		62E1DB1C1A2834610084C6CF /* IndoorLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IndoorLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E1DB211A2834610084C6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62E1DB221A2834610084C6CF /* IndoorLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndoorLocationTests.m; sourceTree = "<group>"; };
+		62E1DB2C1A28375F0084C6CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629537A71A2840A000D00966 /* CoreBluetooth.framework in Frameworks */,
+				62E1DB2D1A28375F0084C6CF /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 		62E1DAFA1A2834600084C6CF = {
 			isa = PBXGroup;
 			children = (
+				629537A61A2840A000D00966 /* CoreBluetooth.framework */,
+				62E1DB2C1A28375F0084C6CF /* CoreLocation.framework */,
 				62E1DB051A2834610084C6CF /* IndoorLocation */,
 				62E1DB1F1A2834610084C6CF /* IndoorLocationTests */,
 				62E1DB041A2834610084C6CF /* Products */,
@@ -344,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -354,6 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -412,6 +422,7 @@
 				62E1DB281A2834610084C6CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62E1DB291A2834610084C6CF /* Build configuration list for PBXNativeTarget "IndoorLocationTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +431,7 @@
 				62E1DB2B1A2834610084C6CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
