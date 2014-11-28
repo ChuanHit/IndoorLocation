@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic, strong) CLBeaconRegion* region;
+@property (nonatomic, strong) NSMutableDictionary * beaconDict;
+@property (nonatomic, strong) NSMutableDictionary * beaconProximityDict;
 
 @property (nonatomic, strong) NSArray* beaconArray;
 
@@ -24,6 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.beaconDict = [[NSMutableDictionary alloc] init];
+    self.beaconProximityDict = [[NSMutableDictionary alloc] init];
+    for (int i = 1; i <= 13; i ++) {
+        [self.beaconDict setObject:@"" forKey:[NSString stringWithFormat:@"%d",i]];
+        [self.beaconProximityDict setObject:@"" forKey:[NSString stringWithFormat:@"%d",i]];
+    }
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -63,7 +72,10 @@
     for (int i = 0; i < [beacons count];  ++i) {
         CLBeacon* beacon = [beacons objectAtIndex:i];
         NSLog(@"minor:%d, distace:%f", [beacon.minor intValue], beacon.accuracy);
+        [self.beaconDict setObject:[NSString stringWithFormat:@"%f",beacon.accuracy] forKey:[NSString stringWithFormat:@"%d", [beacon.minor intValue]]];
+        [self.beaconProximityDict setObject:[NSString stringWithFormat:@"%@", @(beacon.proximity)] forKey:[NSString stringWithFormat:@"%d", [beacon.minor intValue]]];
     }
+    [self.tableView reloadData];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -79,7 +91,7 @@ rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.beaconArray count];
+    return 13;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -93,19 +105,25 @@ rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
         [sub removeFromSuperview];
     }
     
-    CLBeacon* beacon = [self.beaconArray objectAtIndex:indexPath.row];
-    UILabel* minorLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 30)];
+    UILabel* minorLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 80, 30)];
     minorLabel.backgroundColor = [UIColor clearColor];
     minorLabel.font = [UIFont systemFontOfSize:14.f];
-    minorLabel.text = [NSString stringWithFormat:@"minor:%d", [beacon.minor intValue]];
+    minorLabel.text = [NSString stringWithFormat:@"minor:%ld", (long)(indexPath.row + 1)];
     [cell.contentView addSubview:minorLabel];
     
     
-    UILabel* disLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 5, 200, 30)];
+    UILabel* disLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 100, 30)];
     disLabel.backgroundColor = [UIColor clearColor];
     disLabel.font = [UIFont systemFontOfSize:14.f];
-    disLabel.text = [NSString stringWithFormat:@"distance:%f", beacon.accuracy];
+    disLabel.text = self.beaconDict[[NSString stringWithFormat:@"%ld", (long)(indexPath.row + 1)]];
     [cell.contentView addSubview:disLabel];
+    
+    UILabel * proximityLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 5, 80, 30)];
+    proximityLabel.backgroundColor = [UIColor clearColor];
+    proximityLabel.font = [UIFont systemFontOfSize:14.f];
+    proximityLabel.text = self.beaconProximityDict[[NSString stringWithFormat:@"%ld", (long)(indexPath.row + 1)]];
+    [cell.contentView addSubview:proximityLabel];
+
     
     return cell;
 }
