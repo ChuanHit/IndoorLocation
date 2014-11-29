@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6284FC861A2992540024BA0B /* ILLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284FC851A2992540024BA0B /* ILLocationManager.m */; };
 		629537A71A2840A000D00966 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629537A61A2840A000D00966 /* CoreBluetooth.framework */; };
 		62E1DB091A2834610084C6CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB081A2834610084C6CF /* main.m */; };
 		62E1DB0C1A2834610084C6CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB0B1A2834610084C6CF /* AppDelegate.m */; };
@@ -17,7 +18,7 @@
 		62E1DB231A2834610084C6CF /* IndoorLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1DB221A2834610084C6CF /* IndoorLocationTests.m */; };
 		62E1DB2D1A28375F0084C6CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E1DB2C1A28375F0084C6CF /* CoreLocation.framework */; };
 		AC5B842A1A289355006A67F7 /* LocationUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84291A289355006A67F7 /* LocationUploader.m */; };
-		AC5B842D1A289497006A67F7 /* DeviceLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B842C1A289497006A67F7 /* DeviceLocations.m */; };
+		AC5B842D1A289497006A67F7 /* DeviceLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B842C1A289497006A67F7 /* DeviceLocation.m */; };
 		AC5B84301A289531006A67F7 /* DistanceFromIBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B842F1A289531006A67F7 /* DistanceFromIBeacon.m */; };
 		AC5B84331A2895F8006A67F7 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84321A2895F8006A67F7 /* Position.m */; };
 		AC5B84761A28A81E006A67F7 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B845F1A28A81E006A67F7 /* JSONModel.m */; };
@@ -32,6 +33,7 @@
 		AC5B847F1A28A81E006A67F7 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84751A28A81E006A67F7 /* JSONValueTransformer.m */; };
 		AC5B84831A28B2CC006A67F7 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84821A28B2CC006A67F7 /* LocationViewController.m */; };
 		AC5B84881A28B95B006A67F7 /* LocationBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84871A28B95B006A67F7 /* LocationBussiness.m */; };
+		AC5B848B1A29A875006A67F7 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B848A1A29A875006A67F7 /* UserLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6284FC841A2992540024BA0B /* ILLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILLocationManager.h; sourceTree = "<group>"; };
+		6284FC851A2992540024BA0B /* ILLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILLocationManager.m; sourceTree = "<group>"; };
+		6284FC871A2992B60024BA0B /* SynthesisSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesisSingleton.h; sourceTree = "<group>"; };
 		629537A61A2840A000D00966 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		62E1DB031A2834610084C6CF /* IndoorLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndoorLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E1DB071A2834610084C6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,8 +67,8 @@
 		62E1DB2C1A28375F0084C6CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AC5B84281A289355006A67F7 /* LocationUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUploader.h; sourceTree = "<group>"; };
 		AC5B84291A289355006A67F7 /* LocationUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUploader.m; sourceTree = "<group>"; };
-		AC5B842B1A289497006A67F7 /* DeviceLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceLocations.h; sourceTree = "<group>"; };
-		AC5B842C1A289497006A67F7 /* DeviceLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceLocations.m; sourceTree = "<group>"; };
+		AC5B842B1A289497006A67F7 /* DeviceLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceLocation.h; sourceTree = "<group>"; };
+		AC5B842C1A289497006A67F7 /* DeviceLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceLocation.m; sourceTree = "<group>"; };
 		AC5B842E1A289531006A67F7 /* DistanceFromIBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFromIBeacon.h; sourceTree = "<group>"; };
 		AC5B842F1A289531006A67F7 /* DistanceFromIBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFromIBeacon.m; sourceTree = "<group>"; };
 		AC5B84311A2895F8006A67F7 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -94,6 +99,8 @@
 		AC5B84841A28B3DC006A67F7 /* MacroDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
 		AC5B84861A28B95B006A67F7 /* LocationBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationBussiness.h; sourceTree = "<group>"; };
 		AC5B84871A28B95B006A67F7 /* LocationBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationBussiness.m; sourceTree = "<group>"; };
+		AC5B84891A29A875006A67F7 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
+		AC5B848A1A29A875006A67F7 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +146,7 @@
 		62E1DB051A2834610084C6CF /* IndoorLocation */ = {
 			isa = PBXGroup;
 			children = (
+				6284FC871A2992B60024BA0B /* SynthesisSingleton.h */,
 				AC5B84851A28B910006A67F7 /* Bussiness */,
 				AC5B84801A28B28E006A67F7 /* ViewControllers */,
 				AC5B84261A28925B006A67F7 /* Network */,
@@ -195,12 +203,14 @@
 		AC5B84271A289282006A67F7 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				AC5B842B1A289497006A67F7 /* DeviceLocations.h */,
-				AC5B842C1A289497006A67F7 /* DeviceLocations.m */,
+				AC5B842B1A289497006A67F7 /* DeviceLocation.h */,
+				AC5B842C1A289497006A67F7 /* DeviceLocation.m */,
 				AC5B842E1A289531006A67F7 /* DistanceFromIBeacon.h */,
 				AC5B842F1A289531006A67F7 /* DistanceFromIBeacon.m */,
 				AC5B84311A2895F8006A67F7 /* Position.h */,
 				AC5B84321A2895F8006A67F7 /* Position.m */,
+				AC5B84891A29A875006A67F7 /* UserLocation.h */,
+				AC5B848A1A29A875006A67F7 /* UserLocation.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 			children = (
 				AC5B84861A28B95B006A67F7 /* LocationBussiness.h */,
 				AC5B84871A28B95B006A67F7 /* LocationBussiness.m */,
+				6284FC841A2992540024BA0B /* ILLocationManager.h */,
+				6284FC851A2992540024BA0B /* ILLocationManager.m */,
 			);
 			path = Bussiness;
 			sourceTree = "<group>";
@@ -393,11 +405,12 @@
 			files = (
 				AC5B847F1A28A81E006A67F7 /* JSONValueTransformer.m in Sources */,
 				AC5B84831A28B2CC006A67F7 /* LocationViewController.m in Sources */,
+				AC5B848B1A29A875006A67F7 /* UserLocation.m in Sources */,
 				AC5B847C1A28A81E006A67F7 /* JSONHTTPClient.m in Sources */,
 				62E1DB0F1A2834610084C6CF /* ViewController.m in Sources */,
 				AC5B847E1A28A81E006A67F7 /* JSONKeyMapper.m in Sources */,
 				AC5B84761A28A81E006A67F7 /* JSONModel.m in Sources */,
-				AC5B842D1A289497006A67F7 /* DeviceLocations.m in Sources */,
+				AC5B842D1A289497006A67F7 /* DeviceLocation.m in Sources */,
 				AC5B84771A28A81E006A67F7 /* JSONModelArray.m in Sources */,
 				AC5B84881A28B95B006A67F7 /* LocationBussiness.m in Sources */,
 				AC5B847A1A28A81E006A67F7 /* NSArray+JSONModel.m in Sources */,
@@ -406,6 +419,7 @@
 				AC5B84791A28A81E006A67F7 /* JSONModelError.m in Sources */,
 				AC5B847B1A28A81E006A67F7 /* JSONAPI.m in Sources */,
 				62E1DB0C1A2834610084C6CF /* AppDelegate.m in Sources */,
+				6284FC861A2992540024BA0B /* ILLocationManager.m in Sources */,
 				AC5B842A1A289355006A67F7 /* LocationUploader.m in Sources */,
 				AC5B84781A28A81E006A67F7 /* JSONModelClassProperty.m in Sources */,
 				62E1DB091A2834610084C6CF /* main.m in Sources */,
@@ -531,10 +545,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6551785f-5fb4-4032-85b5-d1e8b5aa3a2c";
 			};
 			name = Debug;
 		};
@@ -542,10 +558,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6551785f-5fb4-4032-85b5-d1e8b5aa3a2c";
 			};
 			name = Release;
 		};

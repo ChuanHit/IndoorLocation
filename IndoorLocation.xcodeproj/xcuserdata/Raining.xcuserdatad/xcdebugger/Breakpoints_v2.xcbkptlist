@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IndoorLocation/ViewControllers/LocationViewController.m"
-            timestampString = "438935557.811057"
+            filePath = "IndoorLocation/Bussiness/ILLocationManager.m"
+            timestampString = "438936510.748813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-locationManager:rangingBeaconsDidFailForRegion:withError:"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-startReport"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IndoorLocation/ViewControllers/LocationViewController.m"
-            timestampString = "438935557.811057"
+            filePath = "IndoorLocation/Bussiness/ILLocationManager.m"
+            timestampString = "438936514.21811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-deviceLocation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

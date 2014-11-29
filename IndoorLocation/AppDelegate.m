@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ILLocationManager.h"
 
 @interface AppDelegate ()
 
@@ -16,13 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults objectForKey:@"uuid"]) {
-        self.deviceUUID = [[NSUUID UUID] UUIDString];
-        [defaults setObject:self.deviceUUID forKey:@"uuid"];
-    }
-    else self.deviceUUID = [defaults objectForKey:@"uuid"];
+    [[ILLocationManager sharedILLocationManager] startMonitor];
+    [[ILLocationManager sharedILLocationManager] startReport];
     
     return YES;
 }

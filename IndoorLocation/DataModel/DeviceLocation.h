@@ -10,7 +10,7 @@
 #import "JSONModel.h"
 #import "DistanceFromIBeacon.h"
 
-@interface DeviceLocations : JSONModel
+@interface DeviceLocation : JSONModel
 
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * uuid;

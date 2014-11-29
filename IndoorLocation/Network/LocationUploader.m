@@ -11,7 +11,7 @@
 
 @implementation LocationUploader
 
-- (BOOL)uploadLocation:(DeviceLocations *)deviceLocaitons resBlock:(void (^)(NSData * data, NSURLResponse *response, NSError *error))response
+- (BOOL)uploadLocation:(DeviceLocation *)deviceLocaitons resBlock:(void (^)(NSData * data, NSURLResponse *response, NSError *error))response
 {
     NSURL * url = [NSURL URLWithString:@"http://172.16.30.195:8000/location"];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url];
