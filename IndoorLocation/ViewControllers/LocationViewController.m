@@ -22,7 +22,7 @@
 @property (nonatomic, strong) CLBeaconRegion* region;
 
 @property (nonatomic, strong) NSMutableArray * receiveArr;
-@property (nonatomic, strong) DeviceLocations* deviceLocation;
+@property (nonatomic, strong) DeviceLocation* deviceLocation;
 
 @property (nonatomic, strong) dispatch_source_t timer;
 
@@ -100,7 +100,7 @@
     }
     NSArray * arr = [LocationBussiness getThe3Beacons:sortDict];
     if (arr.count >= 3) {
-        DeviceLocations * deviceLocation = [[DeviceLocations alloc] init];
+        DeviceLocation * deviceLocation = [[DeviceLocation alloc] init];
         deviceLocation.name = @"Rain";
         deviceLocation.uuid = ((AppDelegate *)[UIApplication sharedApplication].delegate).deviceUUID;
         deviceLocation.location = arr;

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DeviceLocations.h"
+#import "DeviceLocation.h"
 
 @interface LocationUploader : NSObject
 
-- (BOOL)uploadLocation:(DeviceLocations *)deviceLocaitons resBlock:(void (^)(NSData * data, NSURLResponse *response, NSError *error))response;
+- (BOOL)uploadLocation:(DeviceLocation *)deviceLocaitons resBlock:(void (^)(NSData * data, NSURLResponse *response, NSError *error))response;
 
 @end

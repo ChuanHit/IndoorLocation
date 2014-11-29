@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Chuan Li. All rights reserved.
 //
 
-#import "DeviceLocations.h"
+#import "DeviceLocation.h"
 
-@implementation DeviceLocations
+@implementation DeviceLocation
 
 @end
