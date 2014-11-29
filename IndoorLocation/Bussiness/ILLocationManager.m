@@ -51,7 +51,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ILLocationManager)
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager requestAlwaysAuthorization];
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
     
     NSUUID* uuid = [[NSUUID alloc] initWithUUIDString:BeaconUUID];
     CLBeaconRegion* beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"IDDD"];
@@ -63,10 +65,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ILLocationManager)
 }
 
 - (void)startReport{
+    float interval = 0.5;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     if (self.timer) {
-        dispatch_source_set_timer(self.timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * 2), 2 * NSEC_PER_SEC, 0);
+        dispatch_source_set_timer(self.timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * interval), interval * NSEC_PER_SEC, 0);
         dispatch_source_set_event_handler(self.timer, ^{
             if (nil == self.deviceLocation) {
                 return;
@@ -100,7 +103,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ILLocationManager)
     }
     
     DeviceLocation* dl = [[DeviceLocation alloc] init];
-    dl.name = @"Rain";
+    dl.name = self.userName?:@"Rain";
     dl.uuid = self.uuid;
     
     NSMutableArray* dList = [NSMutableArray array];

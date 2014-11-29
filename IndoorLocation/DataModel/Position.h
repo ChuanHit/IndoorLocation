@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSNumber * localY;
 @property (nonatomic, strong) NSString * userId;
 @property (nonatomic, strong) NSString * userName;
+@property (nonatomic, strong) NSString<Optional>* avatar;
 
 @end
 

@@ -13,6 +13,7 @@
 SYNTHESIZE_SINGLETON_FOR_HEADER(ILLocationManager)
 
 @property (nonatomic, strong) NSArray* userLocations;
+@property (nonatomic, strong) NSString* userName;
 
 - (void)startReport;
 - (void)startMonitor;

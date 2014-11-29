@@ -19,8 +19,10 @@
 #import "UserLocation.h"
 #import "ILUserView.h"
 
+#import "UIImageView+WebCache.h"
+
 #define  MaxCollection (10)
-#define  HeaderSize (40.f)
+#define  HeaderSize (60.f)
 
 @interface LocationViewController ()
 
@@ -36,6 +38,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Tradeshift Home";
+    
+    self.navigationItem.leftBarButtonItem = nil;
     
     self.userLocDict = [NSMutableDictionary dictionary];
     self.userViewDict = [NSMutableDictionary dictionary];
@@ -65,6 +71,8 @@
                     UIView* dotView = [self.userViewDict objectForKey:pos.userId];
                     if ( nil == dotView ) {
                         UIImageView* dotView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, HeaderSize, HeaderSize)];
+                        dotView.contentMode = UIViewContentModeScaleAspectFill;
+                        [dotView sd_setImageWithURL:[NSURL URLWithString:pos.avatar] placeholderImage:[UIImage imageNamed:@"holder"]];
                         dotView.backgroundColor = [UIColor redColor];
                         dotView.layer.cornerRadius = dotView.frame.size.width/2.f;
                         dotView.clipsToBounds = YES;
