@@ -7,6 +7,7 @@
 //
 
 #import "LocationBussiness.h"
+#import "Position.h"
 
 @implementation LocationBussiness
 

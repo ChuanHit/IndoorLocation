@@ -33,6 +33,7 @@
 		AC5B847F1A28A81E006A67F7 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84751A28A81E006A67F7 /* JSONValueTransformer.m */; };
 		AC5B84831A28B2CC006A67F7 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84821A28B2CC006A67F7 /* LocationViewController.m */; };
 		AC5B84881A28B95B006A67F7 /* LocationBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B84871A28B95B006A67F7 /* LocationBussiness.m */; };
+		AC5B848B1A29A875006A67F7 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B848A1A29A875006A67F7 /* UserLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		AC5B84841A28B3DC006A67F7 /* MacroDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
 		AC5B84861A28B95B006A67F7 /* LocationBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationBussiness.h; sourceTree = "<group>"; };
 		AC5B84871A28B95B006A67F7 /* LocationBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationBussiness.m; sourceTree = "<group>"; };
+		AC5B84891A29A875006A67F7 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
+		AC5B848A1A29A875006A67F7 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,8 @@
 				AC5B842F1A289531006A67F7 /* DistanceFromIBeacon.m */,
 				AC5B84311A2895F8006A67F7 /* Position.h */,
 				AC5B84321A2895F8006A67F7 /* Position.m */,
+				AC5B84891A29A875006A67F7 /* UserLocation.h */,
+				AC5B848A1A29A875006A67F7 /* UserLocation.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			files = (
 				AC5B847F1A28A81E006A67F7 /* JSONValueTransformer.m in Sources */,
 				AC5B84831A28B2CC006A67F7 /* LocationViewController.m in Sources */,
+				AC5B848B1A29A875006A67F7 /* UserLocation.m in Sources */,
 				AC5B847C1A28A81E006A67F7 /* JSONHTTPClient.m in Sources */,
 				62E1DB0F1A2834610084C6CF /* ViewController.m in Sources */,
 				AC5B847E1A28A81E006A67F7 /* JSONKeyMapper.m in Sources */,
@@ -539,10 +545,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6551785f-5fb4-4032-85b5-d1e8b5aa3a2c";
 			};
 			name = Debug;
 		};
@@ -550,10 +558,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = IndoorLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6551785f-5fb4-4032-85b5-d1e8b5aa3a2c";
 			};
 			name = Release;
 		};

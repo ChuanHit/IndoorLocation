@@ -122,6 +122,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ILLocationManager)
     self.beaconArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(CLBeacon* beacon1, CLBeacon* beacon2) {
         return beacon1.accuracy - beacon2.accuracy;
     }];
+    NSMutableArray* filterArray = [NSMutableArray array];
+    for (int i = 0; i < [self.beaconArray count]; ++i) {
+        CLBeacon* b = [self.beaconArray objectAtIndex:i];
+        if (b.accuracy > 0) {
+            [filterArray addObject:b];
+        }
+    }
+    
+    self.beaconArray = filterArray;
+    
+//    for (int i = 0; i < [self.beaconArray count]; ++i) {
+//        CLBeacon* b = [self.beaconArray objectAtIndex:i];
+//        NSLog(@"minor=%d, accuray=%f", [b.minor intValue], b.accuracy);
+//    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager

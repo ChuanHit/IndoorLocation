@@ -15,16 +15,16 @@
 #import "LocationUploader.h"
 #import "MacroDefine.h"
 #import "AppDelegate.h"
+#import "ILLocationManager.h"
+#import "UserLocation.h"
 
 @interface LocationViewController ()
 
-@property (nonatomic, strong) CLLocationManager* locationManager;
-@property (nonatomic, strong) CLBeaconRegion* region;
-
-@property (nonatomic, strong) NSMutableArray * receiveArr;
-@property (nonatomic, strong) DeviceLocation* deviceLocation;
-
+@property (nonatomic, strong) NSMutableDictionary* userLocDict;
+@property (nonatomic, strong) NSMutableDictionary* userViewDict;
 @property (nonatomic, strong) dispatch_source_t timer;
+
+- (CGPoint)_convertFromPosition:(CGPoint)pos;
 
 @end
 
@@ -32,86 +32,68 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.receiveArr = [[NSMutableArray alloc] init];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.activityType = CLActivityTypeFitness;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    NSUUID* uuid = [[NSUUID alloc] initWithUUIDString:BeaconUUID];
-    CLBeaconRegion* beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"IDDD"];
-    beaconRegion.notifyEntryStateOnDisplay = YES;
-    beaconRegion.notifyOnEntry = YES;
-    beaconRegion.notifyOnExit = YES;
-    self.region = beaconRegion;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startRangingBeaconsInRegion:self.region];
- 
+    self.userLocDict = [NSMutableDictionary dictionary];
+    self.userViewDict = [NSMutableDictionary dictionary];
+    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     if (self.timer) {
-        dispatch_source_set_timer(self.timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * 2), 2 * NSEC_PER_SEC, 0);
+        dispatch_source_set_timer(self.timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * 1), 1 * NSEC_PER_SEC, 0);
         dispatch_source_set_event_handler(self.timer, ^{
-            if (nil == self.deviceLocation) {
-                return;
-            }
-            LocationUploader * uploader = [[LocationUploader alloc] init];
-            
-            [uploader uploadLocation:self.deviceLocation resBlock:^(NSData *data, NSURLResponse *response, NSError *error) {
-                NSString* res = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"res=%@", res);
-                NSArray * array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-                [self.receiveArr removeAllObjects];
-                for (NSDictionary * dic in array) {
-                    Position * position = [[Position alloc] initWithDictionary:dic error:nil];
-                    [self.receiveArr addObject:position];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableDictionary* newUserViewDict = [NSMutableDictionary dictionary];
+                NSMutableDictionary* newUserLocDict = [NSMutableDictionary dictionary];
+                for (Position* pos in [[ILLocationManager sharedILLocationManager] userLocations]){
+                    UserLocation* loc = [self.userLocDict objectForKey:pos.userId];
+                    if (nil == loc) {
+                        loc = [[UserLocation alloc] init];
+                        loc.uuid = pos.userId;
+                    }
+                    [loc.positionArray addObject:pos];
+                    
+                    [self.userLocDict removeObjectForKey:pos.userId];
+                    [newUserLocDict setValue:loc forKey:pos.userId];
+                    
+                    UIView* dotView = [self.userViewDict objectForKey:pos.userId];
+                    if ( nil == dotView ) {
+                        UIView* dotView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, loc.possibleRadius, loc.possibleRadius)];
+                        dotView.backgroundColor = [UIColor redColor];
+                        dotView.layer.cornerRadius = dotView.frame.size.width/2.f;
+                        dotView.clipsToBounds = YES;
+                        dotView.center = [self _convertFromPosition:loc.possibleCenter];
+                        [self.mapImageView addSubview:dotView];
+                        [newUserViewDict setValue:dotView forKey:pos.userId];
+                    }
+                    else{
+                        [self.userViewDict removeObjectForKey:pos.userId];
+                        [newUserViewDict setValue:dotView forKey:pos.userId];
+                        [UIView animateWithDuration:0.3 animations:^{
+                            CGPoint center = [self _convertFromPosition:loc.possibleCenter];
+                            CGPoint fakePoint = [self _convertFromPosition:CGPointMake([loc possibleRadius], [loc possibleRadius])];
+                            CGFloat radius = MAX(fakePoint.x, fakePoint.y);
+                            CGRect rect = CGRectMake(center.x-radius, center.y - radius, radius*2, radius*2);
+                            dotView.frame = rect;
+                        }];
+                    }
                 }
-            }];
-            
+                
+                for (UIView* dotView in [self.userViewDict allValues]){
+                    [dotView removeFromSuperview];
+                }
+                
+                self.userViewDict = newUserViewDict;
+                self.userLocDict = newUserLocDict;
+            });
         });
         dispatch_resume(self.timer);
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
-{
-    NSMutableDictionary * sortDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"Immediate":[NSMutableArray new],
-                                                                                       @"Near":[NSMutableArray new],
-                                                                                       @"Far":[NSMutableArray new]}];
-    for (CLBeacon * beacon in beacons) {
-        DistanceFromIBeacon * distance = [DistanceFromIBeacon new];
-        distance.minor = beacon.minor;
-        distance.distance = [[NSNumber alloc] initWithDouble:beacon.accuracy];
-        switch (beacon.proximity) {
-            case CLProximityImmediate:
-                [sortDict[@"Immediate"] addObject:distance];
-                break;
-            case CLProximityNear:
-                [sortDict[@"Near"] addObject:distance];
-                break;
-            case CLProximityFar:
-                [sortDict[@"Far"] addObject:distance];
-                break;
-            default:
-                break;
-        }
-    }
-    NSArray * arr = [LocationBussiness getThe3Beacons:sortDict];
-    if (arr.count >= 3) {
-        DeviceLocation * deviceLocation = [[DeviceLocation alloc] init];
-        deviceLocation.name = @"Rain";
-        deviceLocation.uuid = ((AppDelegate *)[UIApplication sharedApplication].delegate).deviceUUID;
-        deviceLocation.location = arr;
-        self.deviceLocation = deviceLocation;
-    }
+- (CGPoint)_convertFromPosition:(CGPoint)pos{
+    float xRate = pos.x / OFFICE_X_LENGTH;
+    float yRate = pos.y / OFFICE_Y_LENGTH;
+    return CGPointMake(self.mapImageView.frame.size.width * yRate ,self.mapImageView.frame.size.height * xRate);
 }
-
-- (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
-              withError:(NSError *)error{
-    NSLog(@"Error= %@", [error description]);
-}
-
 
 @end
