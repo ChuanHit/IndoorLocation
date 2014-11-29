@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "LocationUploader.h"
 
 #define BeaconUUID @"74278BDA-B644-4520-8F0C-720EAF059935"
 
@@ -45,9 +46,10 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
 }
 
-- (IBAction)check:(id)sender {
+- (IBAction)check:(id)sender{
     if (nil == self.region) {
         NSUUID* uuid = [[NSUUID alloc] initWithUUIDString:BeaconUUID];
         CLBeaconRegion* beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"IDDD"];
@@ -68,10 +70,10 @@
     
     [self.tableView reloadData];
     
-    NSLog(@"count:%lu", (unsigned long)[beacons count]);
+//    NSLog(@"count:%lu", (unsigned long)[beacons count]);
     for (int i = 0; i < [beacons count];  ++i) {
         CLBeacon* beacon = [beacons objectAtIndex:i];
-        NSLog(@"minor:%d, distace:%f", [beacon.minor intValue], beacon.accuracy);
+//        NSLog(@"minor:%d, distace:%f", [beacon.minor intValue], beacon.accuracy);
         [self.beaconDict setObject:[NSString stringWithFormat:@"%f",beacon.accuracy] forKey:[NSString stringWithFormat:@"%d", [beacon.minor intValue]]];
         [self.beaconProximityDict setObject:[NSString stringWithFormat:@"%@", @(beacon.proximity)] forKey:[NSString stringWithFormat:@"%d", [beacon.minor intValue]]];
     }
