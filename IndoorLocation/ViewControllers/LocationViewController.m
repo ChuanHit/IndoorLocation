@@ -17,6 +17,10 @@
 #import "AppDelegate.h"
 #import "ILLocationManager.h"
 #import "UserLocation.h"
+#import "ILUserView.h"
+
+#define  MaxCollection (10)
+#define  HeaderSize (40.f)
 
 @interface LocationViewController ()
 
@@ -51,13 +55,16 @@
                         loc.uuid = pos.userId;
                     }
                     [loc.positionArray addObject:pos];
+                    if ([loc.positionArray count] > MaxCollection) {
+                        [loc.positionArray removeObjectAtIndex:0];
+                    }
                     
                     [self.userLocDict removeObjectForKey:pos.userId];
                     [newUserLocDict setValue:loc forKey:pos.userId];
                     
                     UIView* dotView = [self.userViewDict objectForKey:pos.userId];
                     if ( nil == dotView ) {
-                        UIView* dotView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, loc.possibleRadius, loc.possibleRadius)];
+                        UIImageView* dotView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, HeaderSize, HeaderSize)];
                         dotView.backgroundColor = [UIColor redColor];
                         dotView.layer.cornerRadius = dotView.frame.size.width/2.f;
                         dotView.clipsToBounds = YES;
@@ -70,10 +77,11 @@
                         [newUserViewDict setValue:dotView forKey:pos.userId];
                         [UIView animateWithDuration:0.3 animations:^{
                             CGPoint center = [self _convertFromPosition:loc.possibleCenter];
-                            CGPoint fakePoint = [self _convertFromPosition:CGPointMake([loc possibleRadius], [loc possibleRadius])];
-                            CGFloat radius = MAX(fakePoint.x, fakePoint.y);
+                            CGFloat radius = HeaderSize/2;
                             CGRect rect = CGRectMake(center.x-radius, center.y - radius, radius*2, radius*2);
                             dotView.frame = rect;
+                            dotView.layer.cornerRadius = dotView.frame.size.width/2.f;
+                            dotView.clipsToBounds = YES;
                         }];
                     }
                 }
