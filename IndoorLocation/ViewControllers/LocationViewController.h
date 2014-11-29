@@ -11,4 +11,6 @@
 
 @interface LocationViewController : UIViewController <CLLocationManagerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *mapImageView;
+
 @end

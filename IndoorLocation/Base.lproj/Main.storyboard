@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -58,9 +59,23 @@
                     <view key="view" contentMode="scaleToFill" id="qVm-Cn-UB1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigOffice-cut1" translatesAutoresizingMaskIntoConstraints="NO" id="PQD-uY-WbT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="PQD-uY-WbT" secondAttribute="bottom" id="Ap2-bk-W1u"/>
+                            <constraint firstAttribute="trailing" secondItem="PQD-uY-WbT" secondAttribute="trailing" id="MCN-A7-Sm7"/>
+                            <constraint firstItem="PQD-uY-WbT" firstAttribute="leading" secondItem="qVm-Cn-UB1" secondAttribute="leading" id="XX9-2m-Uj0"/>
+                            <constraint firstItem="PQD-uY-WbT" firstAttribute="top" secondItem="yVs-P9-0bp" secondAttribute="bottom" id="yVi-mI-X7F"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tbw-8B-j3u"/>
+                    <connections>
+                        <outlet property="mapImageView" destination="PQD-uY-WbT" id="0Fb-ur-27C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWU-bv-QfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,4 +100,7 @@
             <point key="canvasLocation" x="382" y="389"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bigOffice-cut1" width="905" height="1808"/>
+    </resources>
 </document>

@@ -12,5 +12,7 @@
 
 #define BeaconUUID @"74278BDA-B644-4520-8F0C-720EAF059935"
 #define APIURL     @"http://172.16.30.195:8000/location"
+#define OFFICE_X_LENGTH 32.64
+#define OFFICE_Y_LENGTH 15.5
 
 #endif

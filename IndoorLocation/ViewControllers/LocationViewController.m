@@ -23,8 +23,11 @@
 
 @property (nonatomic, strong) NSMutableArray * receiveArr;
 @property (nonatomic, strong) DeviceLocations* deviceLocation;
+@property (nonatomic, strong) NSMutableArray * icons;
 
 @property (nonatomic, strong) dispatch_source_t timer;
+
+- (CGPoint)_convertFromPosition:(Position *)pos;
 
 @end
 
@@ -33,7 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.receiveArr = [[NSMutableArray alloc] init];
+    self.icons = [[NSMutableArray alloc] init];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -66,6 +71,13 @@
                 [self.receiveArr removeAllObjects];
                 for (NSDictionary * dic in array) {
                     Position * position = [[Position alloc] initWithDictionary:dic error:nil];
+                    UIView* icon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
+                    icon.center = [self _convertFromPosition:position];
+                    icon.backgroundColor = [UIColor redColor];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.mapImageView addSubview:icon];
+                    });
+                    
                     [self.receiveArr addObject:position];
                 }
             }];
@@ -73,6 +85,12 @@
         });
         dispatch_resume(self.timer);
     }
+}
+
+- (CGPoint)_convertFromPosition:(Position *)pos{
+    float xRate = [pos.localX floatValue] / OFFICE_X_LENGTH;
+    float yRate = [pos.localY floatValue] / OFFICE_Y_LENGTH;
+    return CGPointMake(self.mapImageView.frame.size.width * yRate ,self.mapImageView.frame.size.height * xRate);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
@@ -111,6 +129,19 @@
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
               withError:(NSError *)error{
     NSLog(@"Error= %@", [error description]);
+}
+
+
+#pragma - Display helper
+- (void)addIconsToMapImage:(NSArray *)positions
+{
+    for (int i = 0; i < self.icons.count; i ++) {
+        UIView * icon = self.icons[i];
+        [icon removeFromSuperview];
+    }
+    for (Position * position in positions) {
+        
+    }
 }
 
 

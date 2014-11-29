@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Position.h"
 
 @interface LocationBussiness : NSObject
 
 + (NSArray *)getThe3Beacons:(NSDictionary *)dict;
+
+
 
 @end
